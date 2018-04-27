@@ -1,10 +1,11 @@
+<!--Inspire from https://www.youtube.com/watch?v=xGmXxpIj6vs -->
 <canvas id='game-view' width="400" height="400"></canvas>
 <script>
     window.onload = function() {
         canv = document.getElementById('game-view');
         ctx = canv.getContext('2d');
         document.addEventListener("keydown", keyPush);
-        setInterval(game, 1000/24);
+        setInterval(game, 1000/10);
     }
     px=py=10;
     gs=tc=20;
