@@ -1,0 +1,39 @@
+<!--
+    Snack game elements:
+        Game global
+        Game view
+        Game event
+        Snack
+        Food
+-->
+<!DOCTYPE html>
+<html>
+<title>Snack game</title>
+<script src="./snack.js"></script>
+<script src="./apple.js"></script>
+<script src="./snack-game.js"></script>
+<body>
+<canvas id='game-view' width="400" height="400"></canvas>
+<script>
+    window.onload = function () {
+        let game = new Game();
+    }
+</script>
+
+</body>
+</html>
+<script>
+
+    window.onload = function () {
+        let game = new Game();
+        game.run();
+        document.addEventListener("keydown", keyboarHandler);
+        function keyboarHandler(evt) {
+            game.gameControl(evt.keyCode);
+        }
+        // setInterval(gameThread, 1000 / 5);
+        // function gameThread() {
+        //     game.gameThread();
+        // }
+    }    
+</script>

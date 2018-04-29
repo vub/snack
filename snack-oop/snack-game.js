@@ -1,30 +1,11 @@
-<!--
-    Snack game elements:
-        Game global
-        Game view
-        Game event
-        Snack
-        Food
--->
-<canvas id='game-view' width="400" height="400"></canvas>
-<script>
-
-    window.onload = function () {
-        let game = new Game();
-        document.addEventListener("keydown", keyboarHandler);
-        function keyboarHandler(evt) {
-            game.gameControl(evt.keyCode);
-        }
-        setInterval(gameThread, 1000 / 5);
-        function gameThread() {
-            game.gameThread();
-        }
-    }
-
+(function(){
+    var that = null;
     function Game() {
         // Modal
         this.snack = new Snack();
         this.apple = new Apple();
+
+        that = this;
 
         // View
         this.gs = 20; // Grid size
@@ -63,13 +44,13 @@
             this.interval = setInterval(this.gameThread, 1000 / 5);
         }
 
-        this.gameThread = function gameThread() {
-            this.snack.update();
-            this.gameCollisionHandler();
-            this.drawMap();
-            this.drawSnack(this.snack);
-            this.drawApple(this.apple);
-        }
+        // this.gameThread = function gameThread() {
+        //     this.snack.update();
+        //     this.gameCollisionHandler();
+        //     this.drawMap();
+        //     this.drawSnack(this.snack);
+        //     this.drawApple(this.apple);
+        // }
 
         this.gameCollisionHandler = function gameCollisionHandler() {
             // check snack eat apple
@@ -120,30 +101,29 @@
 
     }
 
-    function Snack() {
-        this.x = 10;
-        this.y = 10;
+    // Game.prototype.gameThread = function () {
+    //     this.snack.update();
+    //     this.gameCollisionHandler();
+    //     this.drawMap();
+    //     this.drawSnack(this.snack);
+    //     this.drawApple(this.apple);
+    // }
 
-        this.xv = 1;
-        this.yv = 0;
+    // Game.prototype.run = function () {
+    //     setInterval(gameThread, 1000 / 5);
+    //     function gameThread() {
+    //         Game.gameThread();
+    //     }
+    // }
 
-        this.trail = [];
-
-        this.tail = 5;
-
-        this.update = function update() {
-            this.x += this.xv;
-            this.y += this.yv;
-
-            this.trail.push({ x: this.x, y: this.y });
-            while (this.trail.length > this.tail) {
-                this.trail.shift();
-            }
-        }
-    }
-
-    function Apple() {
-        this.x = 15;
-        this.y = 15;
-    }
-</script>
+    Game.prototype.run = function () {
+        var timerId = setInterval(function () {
+            this.snack.update();
+            this.gameCollisionHandler();
+            this.drawMap();
+            this.drawSnack(this.snack);
+            this.drawApple(this.apple);
+        }.bind(that), 150)
+      }
+    window.Game = Game;
+}());
