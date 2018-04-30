@@ -44,14 +44,6 @@
             this.interval = setInterval(this.gameThread, 1000 / 5);
         }
 
-        // this.gameThread = function gameThread() {
-        //     this.snack.update();
-        //     this.gameCollisionHandler();
-        //     this.drawMap();
-        //     this.drawSnack(this.snack);
-        //     this.drawApple(this.apple);
-        // }
-
         this.gameCollisionHandler = function gameCollisionHandler() {
             // check snack eat apple
             if (this.apple.x == this.snack.x && this.apple.y == this.snack.y) {
@@ -100,21 +92,6 @@
         }
 
     }
-
-    // Game.prototype.gameThread = function () {
-    //     this.snack.update();
-    //     this.gameCollisionHandler();
-    //     this.drawMap();
-    //     this.drawSnack(this.snack);
-    //     this.drawApple(this.apple);
-    // }
-
-    // Game.prototype.run = function () {
-    //     setInterval(gameThread, 1000 / 5);
-    //     function gameThread() {
-    //         Game.gameThread();
-    //     }
-    // }
 
     Game.prototype.run = function () {
         var timerId = setInterval(function () {
